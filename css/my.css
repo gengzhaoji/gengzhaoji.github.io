@@ -1,0 +1,10 @@
+/* Here is your custom css styles. */
+pre{
+      background: #272822;
+      padding-bottom: 2em !important;
+}
+pre code {
+    padding: 0;
+    color: #e8eaf6;
+    background-color: transparent; 
+}
