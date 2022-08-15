@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="ElementPlus, 耿朝继">
-    <meta name="description" content="自定义修改 show-overflow-tooltip 的样式el-table 表格行有一个可使用的 show-overflow-tooltip 属性，它接受一个 Boolean，为 true 时多余的内容会在 hover 时以 toolt">
+    <meta name="description" content="树形表格数据修改回显问题el-table 组件，支持树类型的数据的显示。 当 row 中包含 children 字段时，被视为树形数据。 渲染嵌套数据需要 prop 的 row-key。 此外，子行数据可以异步加载。 设置 Table 的 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -342,41 +342,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="自定义修改-show-overflow-tooltip-的样式"><a href="#自定义修改-show-overflow-tooltip-的样式" class="headerlink" title="自定义修改 show-overflow-tooltip 的样式"></a>自定义修改 show-overflow-tooltip 的样式</h2><p>el-table 表格行有一个可使用的 show-overflow-tooltip 属性，它接受一个 Boolean，为 true 时多余的内容会在 hover 时以 tooltip 的形式显示出来。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column
-  prop<span class="token operator">=</span><span class="token string">"name"</span>
-  label<span class="token operator">=</span><span class="token string">"名称"</span>
-  show<span class="token operator">-</span>overflow<span class="token operator">-</span>tooltip
-<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>table<span class="token operator">-</span>column<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>当文字过多时它会显示一长行，非常不美观。</p>
-<p>当然，你可以添加一个样式修改它的宽度。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.el-tooltip__popper</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">max-width</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>但是如果你写在 style lang&#x3D;“scss” scoped 里面它不会生效，如果新写一个 style 标签在里面写样式又会造成全局样式污染，网上找了好多也没看见好的解决办法。</p>
-<p>在查看 el-table 文档时发现有一个 tooltip-effect 属性，它有两个可选值 dark&#x2F;light，可以简单的修改它的主题色。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>el<span class="token operator">-</span>table <span class="token operator">:</span>data<span class="token operator">=</span><span class="token string">"tableData"</span> tooltip<span class="token operator">-</span>effect<span class="token operator">=</span><span class="token string">"dark"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果加上这个属性，tooltip 会有一个 is-dark&#x2F;is-light 的样式名，但是这个样式是它本来就有的，即使不加 tooltip-effect 它也会有默认的 is-dark,所以它也是一个全局样式名，这样仍然没办法解决上面提到的问题。<br>无奈准备放弃，用其它的比如 popover 或者 tooltip 插槽来写时突然灵光一闪，如果我不使用那两个可选值 dark&#x2F;light，自己写一个呢，有趣的事发生了，它的 is-dark&#x2F;is-light 变成了我传入的值<code>myTooltips</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>el<span class="token operator">-</span>table <span class="token operator">:</span>data<span class="token operator">=</span><span class="token string">"tableData"</span> tooltip<span class="token operator">-</span>effect<span class="token operator">=</span><span class="token string">"myTooltips"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>这样我们就得到了一个自定义样式，虽然没了它的基础样式，但你可以在自定义样式上面想改成什么样都可以。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;style lang="scss">
-    .myTooltips</span><span class="token punctuation">&#123;</span> // 你想要的样式 要写一些背景色啊盒阴影啥的 <span class="token punctuation">&#125;</span>
-&lt;/style><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>而后我又试着传入:</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>el<span class="token operator">-</span>table <span class="token operator">:</span>data<span class="token operator">=</span><span class="token string">"tableData"</span> tooltip<span class="token operator">-</span>effect<span class="token operator">=</span><span class="token string">"dark  myTooltips"</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>有趣的事发生了，它不仅有了 is-dark 这个基础样式，还拥有了一个自定义样式名。这个就有点类似于 popper-class 的味道了。</p>
-<p>最后就变得更简单了，直接在 style 里面用自定义的样式名写你想要的样式。</p>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">&lt;style lang="scss">
-    .myTooltips</span><span class="token punctuation">&#123;</span> // 你想要的样式 <span class="token punctuation">&#125;</span>
-&lt;/style><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="树形表格数据修改回显问题"><a href="#树形表格数据修改回显问题" class="headerlink" title="树形表格数据修改回显问题"></a>树形表格数据修改回显问题</h2><p>el-table 组件，支持树类型的数据的显示。 当 row 中包含 children 字段时，被视为树形数据。 渲染嵌套数据需要 prop 的 <code>row-key</code>。 此外，子行数据可以异步加载。 设置 Table 的 lazy 属性为 true 与加载函数 load 。 通过指定 row 中的 hasChildren 字段来指定哪些行是包含子节点。 children 与 hasChildren 都可以通过 tree-props 配置。</p>
+                <h2 id="树形表格数据修改回显问题"><a href="#树形表格数据修改回显问题" class="headerlink" title="树形表格数据修改回显问题"></a>树形表格数据修改回显问题</h2><p>el-table 组件，支持树类型的数据的显示。 当 row 中包含 children 字段时，被视为树形数据。 渲染嵌套数据需要 prop 的 <code>row-key</code>。 此外，子行数据可以异步加载。 设置 Table 的 lazy 属性为 true 与加载函数 load 。 通过指定 row 中的 hasChildren 字段来指定哪些行是包含子节点。 children 与 hasChildren 都可以通过 tree-props 配置。</p>
 <p>但是当数据回显时展开的行子类等显示会有问题，通过 loadFnResolve 记录展开行的 id</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>el<span class="token operator">-</span>table
     ref<span class="token operator">=</span><span class="token string">"table"</span>
