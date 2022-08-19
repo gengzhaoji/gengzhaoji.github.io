@@ -4,13 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git, 耿朝继">
-    <meta name="description" content="常用命令git branch 查看本地所有分支
-git status 查看当前状态 
-git commit 提交 
-git branch -a 查看所有的分支
-git branch -r 查看远程所有分支
-git commit -am &#34;i">
+    <meta name="keywords" content="自动生成Api, 耿朝继">
+    <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +19,7 @@ git commit -am &#34;i">
 
     
 
-    <title>Git | 耿朝继</title>
+    <title>自动生成Api | 耿朝继</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
@@ -182,12 +177,12 @@ git commit -am &#34;i">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git</h1>
+                    <h1 class="description center-align post-title">自动生成Api</h1>
                 </div>
             </div>
         </div>
@@ -303,8 +298,16 @@ git commit -am &#34;i">
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/git/">
-                                <span class="chip bg-color">git</span>
+                            <a href="../../../../tags/vue/">
+                                <span class="chip bg-color">vue</span>
+                            </a>
+                        
+                            <a href="../../../../tags/axios/">
+                                <span class="chip bg-color">axios</span>
+                            </a>
+                        
+                            <a href="../../../../tags/api/">
+                                <span class="chip bg-color">api</span>
                             </a>
                         
                     </div>
@@ -319,7 +322,7 @@ git commit -am &#34;i">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-12
+                    2021-07-12
                 </div>
                 
 
@@ -343,73 +346,7 @@ git commit -am &#34;i">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">git branch 查看本地所有分支
-git status 查看当前状态 
-git commit 提交 
-git branch <span class="token operator">-</span>a 查看所有的分支
-git branch <span class="token operator">-</span>r 查看远程所有分支
-git commit <span class="token operator">-</span>am <span class="token string">"init"</span> 提交并且加注释 
-git remote add origin git@<span class="token number">192.168</span><span class="token number">.1</span><span class="token number">.119</span><span class="token operator">:</span>ndshow
-git push origin master 将文件给推到服务器上 
-git remote show origin 显示远程库origin里的资源 
-git push origin master<span class="token operator">:</span>develop
-git push origin master<span class="token operator">:</span>hb<span class="token operator">-</span>dev 将本地库与服务器上的库进行关联 
-git checkout <span class="token operator">--</span>track origin<span class="token operator">/</span>dev 切换到远程dev分支
-git branch <span class="token operator">-</span><span class="token constant">D</span> master develop 删除本地库develop
-git checkout <span class="token operator">-</span>b dev 建立一个新的本地分支dev
-git merge origin<span class="token operator">/</span>dev 将分支dev与当前分支进行合并
-git checkout dev 切换到本地dev分支
-git remote show 查看远程库
-git add <span class="token punctuation">.</span>
-git rm <span class="token function">文件名</span><span class="token punctuation">(</span>包括路径<span class="token punctuation">)</span> 从git中删除指定文件
-git clone git<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>schacon<span class="token operator">/</span>grit<span class="token punctuation">.</span>git 从服务器上将代码给拉下来
-git config <span class="token operator">--</span>list 看所有用户
-git ls<span class="token operator">-</span>files 看已经被提交的
-git rm <span class="token punctuation">[</span>file name<span class="token punctuation">]</span> 删除一个文件
-git commit <span class="token operator">-</span>a 提交当前repos的所有的改变
-git add <span class="token punctuation">[</span>file name<span class="token punctuation">]</span> 添加一个文件到git index
-git commit <span class="token operator">-</span>v 当你用－v参数的时候可以看commit的差异
-git commit <span class="token operator">-</span>m <span class="token string">"This is the message describing the commit"</span> 添加commit信息
-git commit <span class="token operator">-</span>a <span class="token operator">-</span>a是代表add，把所有的change加到git index里然后再commit
-git commit <span class="token operator">-</span>a <span class="token operator">-</span>v 一般提交命令
-git log 看你commit的日志
-git diff 查看尚未暂存的更新
-git rm a<span class="token punctuation">.</span>a <span class="token function">移除文件</span><span class="token punctuation">(</span>从暂存区和工作区中删除<span class="token punctuation">)</span>
-git rm <span class="token operator">--</span>cached a<span class="token punctuation">.</span>a <span class="token function">移除文件</span><span class="token punctuation">(</span>只从暂存区中删除<span class="token punctuation">)</span>
-git commit <span class="token operator">-</span>m <span class="token string">"remove"</span> <span class="token function">移除文件</span><span class="token punctuation">(</span>从Git中删除<span class="token punctuation">)</span>
-git rm <span class="token operator">-</span>f a<span class="token punctuation">.</span>a <span class="token function">强行移除修改后文件</span><span class="token punctuation">(</span>从暂存区和工作区中删除<span class="token punctuation">)</span>
-git diff <span class="token operator">--</span>cached 或 $ git diff <span class="token operator">--</span>staged 查看尚未提交的更新
-git stash push 将文件给push到一个临时空间中
-git stash pop 将文件从临时空间pop下来
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-git remote add origin git@github<span class="token punctuation">.</span>com<span class="token operator">:</span>username<span class="token operator">/</span>Hello<span class="token operator">-</span>World<span class="token punctuation">.</span>git
-git push origin master 将本地项目给提交到服务器中
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-git pull 本地与服务器端同步
-git pull origin master <span class="token operator">--</span>allow<span class="token operator">-</span>unrelated<span class="token operator">-</span>histories  有不同的版本时强制同步
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-git <span class="token function">push</span> <span class="token punctuation">(</span>远程仓库名<span class="token punctuation">)</span> <span class="token punctuation">(</span>分支名<span class="token punctuation">)</span> 将本地分支推送到服务器上去。
-git push origin serverfix<span class="token operator">:</span>awesomebranch
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span>
-git fetch 相当于是从远程获取最新版本到本地，不会自动merge
-git commit <span class="token operator">-</span>a <span class="token operator">-</span>m <span class="token string">"log_message"</span> <span class="token punctuation">(</span><span class="token operator">-</span>a是提交所有改动，<span class="token operator">-</span>m是加入log信息<span class="token punctuation">)</span> 本地修改同步至服务器端 ：
-git branch branch_0<span class="token punctuation">.</span><span class="token number">1</span> master 从主分支master创建branch_0<span class="token punctuation">.</span><span class="token number">1</span>分支
-git branch <span class="token operator">-</span>m branch_0<span class="token punctuation">.</span><span class="token number">1</span> branch_1<span class="token punctuation">.</span><span class="token number">0</span> 将branch_0<span class="token punctuation">.</span><span class="token number">1</span>重命名为branch_1<span class="token punctuation">.</span><span class="token number">0</span>
-git checkout branch_1<span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">/</span>master 切换到branch_1<span class="token punctuation">.</span><span class="token number">0</span><span class="token operator">/</span>master分支
-du <span class="token operator">-</span>hs
-git branch 删除远程branch
-git push origin <span class="token operator">:</span>branch_remote_name
-git branch <span class="token operator">-</span>r <span class="token operator">-</span>d branch_remote_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<h2 id="初始化版本库，并提交到远程服务器端"><a href="#初始化版本库，并提交到远程服务器端" class="headerlink" title="初始化版本库，并提交到远程服务器端"></a>初始化版本库，并提交到远程服务器端</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">mkdir WebApp
-cd WebApp
-git init 本地初始化
-touch <span class="token constant">README</span>
-git add <span class="token constant">README</span> 添加文件
-git commit <span class="token operator">-</span>m <span class="token string">'first commit'</span>
-git remote add origin git@github<span class="token punctuation">.</span>com<span class="token operator">:</span>daixu<span class="token operator">/</span>WebApp<span class="token punctuation">.</span>git
-增加一个远程服务器端
-上面的命令会增加<span class="token constant">URL</span>地址为<span class="token string">'git@github.com:daixu/WebApp.git'</span>，名称为origin的远程服务器库，以后提交代码的时候只需要使用 origin别名即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                
                 
             </div>
             <hr/>
@@ -473,8 +410,16 @@ git remote add origin git@github<span class="token punctuation">.</span>com<span
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/git/">
-                                    <span class="chip bg-color">git</span>
+                                <a href="../../../../tags/vue/">
+                                    <span class="chip bg-color">vue</span>
+                                </a>
+                            
+                                <a href="../../../../tags/axios/">
+                                    <span class="chip bg-color">axios</span>
+                                </a>
+                            
+                                <a href="../../../../tags/api/">
+                                    <span class="chip bg-color">api</span>
                                 </a>
                             
                         </div>
@@ -694,27 +639,27 @@ git remote add origin git@github<span class="token punctuation">.</span>com<span
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="">
+                <a href="../../../../2020/08/12/gz-vue-cli/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/10.jpg" class="responsive-img" alt="Git">
+                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="自定义脚手架">
                         
-                        <span class="card-title">Git</span>
+                        <span class="card-title">自定义脚手架</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            git常用命令总结
+                            脚手架开发相关知识。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
                             </span>
                         <span class="publish-author">
                             
@@ -724,12 +669,11 @@ git remote add origin git@github<span class="token punctuation">.</span>com<span
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/git/">
-                        <span class="chip bg-color">git</span>
+                    <a href="../../../../tags/%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                        <span class="chip bg-color">脚手架</span>
                     </a>
                     
                 </div>
