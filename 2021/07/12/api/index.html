@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="自动生成Api, 耿朝继">
-    <meta name="description" content="">
+    <meta name="description" content="代码生成器概述在实践中，我们发现上述的代码重复率非常高，新增和修改都费力，并且是没技术含量的体力活。 但又必须要这样做，不适合以公共函数的形式重用，为了解决这个重复的体力活，我们开发了代码生成器，用工具来代替体力活。
+对于前后端的数据交互都">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -346,7 +347,27 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在实践中，我们发现上述的代码重复率非常高，新增和修改都费力，并且是没技术含量的体力活。 但又必须要这样做，不适合以公共函数的形式重用，为了解决这个重复的体力活，我们开发了代码生成器，用工具来代替体力活。</p>
+<p>对于前后端的数据交互都可以归纳为是对实体的 新增、修改、删除、查询。</p>
+<p>代码生成器的原理是也是按照对实体的增、删、改、查规范，利用NodeJs根据接口的配置文件（包含请求路径、请求选项）按指定模板创建统一符合开发规范的js文件到工程指定目录下。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>以下通过一个用户的实体配置，讲解由代码生成器生成的代码文件。</p>
+<p>1、新建文件 &#x2F;coder&#x2F;schemas&#x2F;system.js 以下配置实现用户的增、删、改、列表查询、详情查询、接口调用。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'系统管理模块'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'菜单管理'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'menu'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token string">'remove'</span><span class="token punctuation">,</span> <span class="token string">'edit'</span><span class="token punctuation">,</span> <span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token string">'info'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/system/menu'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p><strong>TIP</strong></p>
+<p>新建实体配置文件必须要在&#x2F;coder&#x2F;schemas&#x2F;目录下，可以建目录。</p>
+</blockquote>
+<p>2、运行命令 npm run coder 生成代码，代码文件目录在 src&#x2F;api&#x2F;system.js, 目录结构如下：</p>
+<img src="https://gitee.com/gengzhaoji/Blog/blob/master/source/upload/1661133076216.png">
+
                 
             </div>
             <hr/>
