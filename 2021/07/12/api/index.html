@@ -349,7 +349,7 @@
             <div id="articleContent">
                 <h1 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在实践中，我们发现上述的代码重复率非常高，新增和修改都费力，并且是没技术含量的体力活。 但又必须要这样做，不适合以公共函数的形式重用，为了解决这个重复的体力活，我们开发了代码生成器，用工具来代替体力活。</p>
 <p>对于前后端的数据交互都可以归纳为是对实体的 新增、修改、删除、查询。</p>
-<p>代码生成器的原理是也是按照对实体的增、删、改、查规范，利用NodeJs根据接口的配置文件（包含请求路径、请求选项）按指定模板创建统一符合开发规范的js文件到工程指定目录下。</p>
+<p>代码生成器的原理是也是按照对实体的增、删、改、查规范，利用 NodeJs 根据接口的配置文件（包含请求路径、请求选项）按指定模板创建统一符合开发规范的 js 文件到工程指定目录下。</p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>以下通过一个用户的实体配置，讲解由代码生成器生成的代码文件。</p>
 <p>1、新建文件 &#x2F;coder&#x2F;schemas&#x2F;system.js 以下配置实现用户的增、删、改、列表查询、详情查询、接口调用。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
@@ -361,6 +361,7 @@
             <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token string">'remove'</span><span class="token punctuation">,</span> <span class="token string">'edit'</span><span class="token punctuation">,</span> <span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token string">'info'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
             <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/system/menu'</span><span class="token punctuation">,</span>
         <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <blockquote>
 <p><strong>TIP</strong></p>
 <p>新建实体配置文件必须要在&#x2F;coder&#x2F;schemas&#x2F;目录下，可以建目录。</p>
@@ -368,6 +369,255 @@
 <p>2、运行命令 npm run coder 生成代码，代码文件目录在 src&#x2F;api&#x2F;system.js, 目录结构如下：</p>
 <img src="https://gitee.com/gengzhaoji/Blog/blob/master/source/upload/1661133076216.png">
 
+<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p>代码生成器生成的代码需要与后端接口有预先的约定</p>
+<h2 id="请求-URL-的约定"><a href="#请求-URL-的约定" class="headerlink" title="请求 URL 的约定"></a>请求 URL 的约定</h2><p>前后端分离开发最佳实践是采用 RESTful 的接口形式进行通信，在此我们对请求 URL 进行统一的规范约定。</p>
+<table>
+<thead>
+<tr>
+<th>请求类型</th>
+<th>前端预定的方法前缀</th>
+<th>请求方法类型</th>
+<th>api 地址的后缀映射</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新增</td>
+<td>add</td>
+<td>post</td>
+<td>&#x2F;add</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>edit</td>
+<td>put</td>
+<td>&#x2F;edit</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>remove</td>
+<td>delete</td>
+<td>&#x2F;remove</td>
+</tr>
+<tr>
+<td>分页列表</td>
+<td>page</td>
+<td>get</td>
+<td>&#x2F;page</td>
+</tr>
+<tr>
+<td>不分页列表</td>
+<td>list</td>
+<td>get</td>
+<td>&#x2F;list</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>export</td>
+<td>get</td>
+<td>&#x2F;export</td>
+</tr>
+<tr>
+<td>详情</td>
+<td>info</td>
+<td>get</td>
+<td>&#x2F;info</td>
+</tr>
+<tr>
+<td>唯一校验</td>
+<td>unique</td>
+<td>get</td>
+<td>&#x2F;unique</td>
+</tr>
+</tbody></table>
+<h2 id="请求传参的约定"><a href="#请求传参的约定" class="headerlink" title="请求传参的约定"></a>请求传参的约定</h2><p>GET 请求需要中文转码，导出 export 请求<code>responseType = &#39;blob&#39;</code></p>
+<blockquote>
+<p>if (config.method &#x3D;&#x3D;&#x3D; ‘get’) config.paramsSerializer &#x3D; (params) &#x3D;&gt; qs.stringify(params, { arrayFormat: ‘comma’ });</p>
+</blockquote>
+<h2 id="分页列表，请求参数约定"><a href="#分页列表，请求参数约定" class="headerlink" title="分页列表，请求参数约定"></a>分页列表，请求参数约定</h2><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pageSize</td>
+<td>每页几条数据</td>
+</tr>
+<tr>
+<td>pageNum</td>
+<td>页码，从 1 开始</td>
+</tr>
+<tr>
+<td>needCount</td>
+<td>needCount：1，需要总数,处理不需要总条数的情况（后台性能优化），默认为 1</td>
+</tr>
+</tbody></table>
+<h2 id="分页列表-响应示例"><a href="#分页列表-响应示例" class="headerlink" title="分页列表 响应示例"></a>分页列表 响应示例</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">code</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+<span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">rows</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"2"</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"4"</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"5"</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">total</span><span class="token operator">:</span> <span class="token number">3</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token literal-property property">msg</span><span class="token operator">:</span> <span class="token string">"请求成功"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="响应码-code-的约定"><a href="#响应码-code-的约定" class="headerlink" title="响应码 code 的约定"></a>响应码 code 的约定</h2><pre class="line-numbers language-none"><code class="language-none">200：执行成功
+401：未登录（需要重新登录）
+403：权限不足
+404: 访问资源不存在
+418: 联合登陆失败
+500：系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="请求跨域问题解决方案"><a href="#请求跨域问题解决方案" class="headerlink" title="请求跨域问题解决方案"></a>请求跨域问题解决方案</h2><p>前后端分离开发模式，由于前后端可以进行单独部署，请求跨域问题很常见，解决方法主要有两种方式：</p>
+<p>1.采用 nginx 代理 2.接口响应头开启 Cross （推荐）</p>
+<p>响应头需要做以下配置, 同时后端需要开放 OPTIONS 类型的请求，跨域带 cookie 的请求时，浏览器先试探性发送 OPTIONS 请求，成功后才发起真正的请求</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Access<span class="token operator">-</span>Control<span class="token operator">-</span>Allow<span class="token operator">-</span>Credentials<span class="token operator">:</span><span class="token boolean">true</span>
+Access<span class="token operator">-</span>Control<span class="token operator">-</span>Allow<span class="token operator">-</span>Origin<span class="token operator">:</span>请求的host<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>如:</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Access<span class="token operator">-</span>Control<span class="token operator">-</span>Allow<span class="token operator">-</span>Credentials<span class="token operator">:</span><span class="token boolean">true</span>
+Access<span class="token operator">-</span>Control<span class="token operator">-</span>Allow<span class="token operator">-</span>Origin<span class="token operator">:</span>http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>fbknav<span class="token punctuation">.</span>cn<span class="token operator">:</span><span class="token number">98</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>如果接口不需跨域带 cookie 验证信息，可以简单设置</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Access<span class="token operator">-</span>Control<span class="token operator">-</span>Allow<span class="token operator">-</span>Origin<span class="token operator">:</span> <span class="token operator">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><p>当后端提供的接口与约定的规范不一致的时候，可以通过配置进行相应的调整做适配，但建议还是按前端建议的约定规范。</p>
+<h2 id="配置说明coder-config-js"><a href="#配置说明coder-config-js" class="headerlink" title="配置说明coder/config.js"></a>配置说明<code>coder/config.js</code></h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 架构配置文件目录</span>
+    <span class="token literal-property property">schemasDir</span><span class="token operator">:</span> <span class="token string">'./schemas/'</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 模板文件目录</span>
+    <span class="token literal-property property">templatesDir</span><span class="token operator">:</span> <span class="token string">'./templates/'</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// api请求地址前缀</span>
+    <span class="token literal-property property">pathPrefix</span><span class="token operator">:</span> <span class="token string">'API_HOST'</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// api支持的请求方法</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token comment">// 新增数据</span>
+        <span class="token string">'edit'</span><span class="token punctuation">,</span> <span class="token comment">// 更新数据</span>
+        <span class="token string">'remove'</span><span class="token punctuation">,</span> <span class="token comment">// 删除数据</span>
+        <span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token comment">// 列表数据，响应数据含有分页信息，如：总数、当前页码、页大小</span>
+        <span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token comment">// 不分页列表数据</span>
+        <span class="token string">'export'</span><span class="token punctuation">,</span> <span class="token comment">// 根据条件导出</span>
+        <span class="token string">'info'</span><span class="token punctuation">,</span> <span class="token comment">// 详情查询</span>
+        <span class="token string">'unique'</span><span class="token punctuation">,</span> <span class="token comment">// 唯一校验</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 数据请求类型对应http请求方法的映射</span>
+    <span class="token literal-property property">methodTypeMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'put'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'delete'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 数据请求类型对应api地址的后缀映射</span>
+    <span class="token literal-property property">methodSuffixMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'/add'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'/edit'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'/remove'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'/page'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'/list'</span><span class="token punctuation">,</span>
+        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'/export'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'/info'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'/unique'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 请求方法对应的中文注释</span>
+    <span class="token literal-property property">methodCommentMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'新增&lt;%=cname%>'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'更新&lt;%=cname%>'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'删除&lt;%=cname%>'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>分页列表'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>不分页列表'</span><span class="token punctuation">,</span>
+        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'根据条件导出&lt;%=cname%>'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>单条信息详情'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'&lt;%=cname%>字段去重校验'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 是否开启生成批量删除</span>
+    <span class="token literal-property property">batchEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+
+    <span class="token comment">// 生成api文件路径</span>
+    <span class="token literal-property property">outApiPath</span><span class="token operator">:</span> <span class="token string">'../src/api/'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="模型配置"><a href="#模型配置" class="headerlink" title="模型配置"></a>模型配置</h2><p>一个标准的模型配置文件如下，建议相同的实体操作都在一个文件里配置。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span> <span class="token comment">// 模块名称，用来生成注释文档</span>
+  <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/api/users"</span><span class="token punctuation">,</span> <span class="token comment">// 接口地址路径，必须</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment">// 接口说明，用来生成注释文档</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment">// 方法名，methods + name使用驼峰法生成完整的方法名，可选</span>
+    <span class="token literal-property property">prefix</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment">// 接口地址前缀，可选，默认为`coder/config.js`中的pathPrefix, 名称必须要在 src/config/index.js中定义，否则报错</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"add"</span><span class="token punctuation">,</span> <span class="token comment">// 新增数据</span>
+      <span class="token string">"edit"</span><span class="token punctuation">,</span> <span class="token comment">// 更新数据</span>
+      <span class="token string">"remove"</span><span class="token punctuation">,</span> <span class="token comment">// 删除数据</span>
+      <span class="token string">"page"</span><span class="token punctuation">,</span> <span class="token comment">// 列表数据，响应数据含有分页信息，如：总数、当前页码、页大小</span>
+      <span class="token string">"list"</span><span class="token punctuation">,</span> <span class="token comment">// 不分页列表数据</span>
+      <span class="token string">"export"</span><span class="token punctuation">,</span> <span class="token comment">// 根据条件导出</span>
+      <span class="token string">"info"</span><span class="token punctuation">,</span> <span class="token comment">// 详情查询</span>
+      <span class="token string">"unique"</span><span class="token punctuation">,</span> <span class="token comment">// 唯一校验</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 生成请求方法，没有该参数时默认全部，如需要自定义，书写名称即可</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// axios 参数选项，可选</span>
+    <span class="token literal-property property">disabled</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 是否禁用该配置项， 设置为true，代码生成器将忽略该配置</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="1、实现对一个实体进行增、删、改、查、导出、唯一性校验"><a href="#1、实现对一个实体进行增、删、改、查、导出、唯一性校验" class="headerlink" title="1、实现对一个实体进行增、删、改、查、导出、唯一性校验"></a>1、实现对一个实体进行增、删、改、查、导出、唯一性校验</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/api/user'</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法"><a href="#2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法" class="headerlink" title="2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法"></a>2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/api/user'</span>，
+        <span class="token comment">// 需要生成的方法，可以按需要设置</span>
+        <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token string">'edit'</span><span class="token punctuation">,</span> <span class="token string">'remove'</span><span class="token punctuation">,</span> <span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token string">'info'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="3、自定义方法配置"><a href="#3、自定义方法配置" class="headerlink" title="3、自定义方法配置"></a>3、自定义方法配置</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+       <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'登录接口'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">'auth'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/auth/login'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4、指定请求接口地址前缀"><a href="#4、指定请求接口地址前缀" class="headerlink" title="4、指定请求接口地址前缀"></a>4、指定请求接口地址前缀</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'登录接口'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">'auth'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">prefix</span><span class="token operator">:</span> <span class="token string">'OTHER_PATH'</span><span class="token punctuation">,</span> <span class="token comment">// 设置与全局配置不同的前缀，OTHER_PATH 在 src/config/index.js中定义</span>
+        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/auth/login'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
