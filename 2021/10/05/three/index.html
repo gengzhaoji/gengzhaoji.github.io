@@ -5,7 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Three知识点, 耿朝继">
-    <meta name="description" content="">
+    <meta name="description" content="FBX文件转换为GLB文件方法：1、第一种使用插件fbx2gltf
+npm i fbx2gltf -S 项目中安装 fbx2gltf 插件。
+cmd管理员运行进入node_modules\fbx2gltf文件下的bin文件，然后根据平台选择">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -318,7 +320,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-05
+                    2021-10-05
                 </div>
                 
 
@@ -342,7 +344,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="FBX文件转换为GLB文件方法："><a href="#FBX文件转换为GLB文件方法：" class="headerlink" title="FBX文件转换为GLB文件方法："></a>FBX文件转换为GLB文件方法：</h2><h3 id="1、第一种使用插件fbx2gltf"><a href="#1、第一种使用插件fbx2gltf" class="headerlink" title="1、第一种使用插件fbx2gltf"></a>1、第一种使用插件fbx2gltf</h3><ol>
+<li><code>npm i fbx2gltf -S</code> 项目中安装 <code>fbx2gltf</code> 插件。</li>
+<li>cmd管理员运行进入node_modules\fbx2gltf文件下的bin文件，然后根据平台选择平台进入相应目录，window系统选择Windows_NT目录，同时把要转换的fbx文件拷贝放在该目录下。</li>
+<li><code>for %i in (&#39;dir *.fbx &#39;) do FBX2glTF -i %i -o %~ni.glb</code>将fbx格式文件批量转换为glb格式。</li>
+</ol>
+<h3 id="2、使用THREE自带的编辑器"><a href="#2、使用THREE自带的编辑器" class="headerlink" title="2、使用THREE自带的编辑器"></a>2、使用THREE自带的编辑器</h3><ol>
+<li>使用<code>https://threejs.org/editor/</code>将fbx导入。</li>
+<li>然后导出glb文件。</li>
+</ol>
+<h2 id="GLB文件压缩（模型文件大小优化）"><a href="#GLB文件压缩（模型文件大小优化）" class="headerlink" title="GLB文件压缩（模型文件大小优化）"></a>GLB文件压缩（模型文件大小优化）</h2><ol>
+<li><code>npm i gltf-pipeline -g</code> 全局安装压缩插件。</li>
+<li><code>for %i in (&#39;dir ./  *.glb /s /b&#39;) do gltf-pipeline -i %i -o %~ni.glb -d</code> GLB文件所在目录下的glb文件进行批量压缩。</li>
+</ol>
+
                 
             </div>
             <hr/>
@@ -589,24 +604,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../pinia/">
+                <a href="../../../../2022/03/03/vue3/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="Pinia基础">
+                        <img src="../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Vue3知识点">
                         
-                        <span class="card-title">Pinia基础</span>
+                        <span class="card-title">Vue3知识点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vue项目中使用pinia全局数据管理基础知识点。
+                            vue3知识点总结
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-03
                         </span>
                         <span class="publish-author">
                             
@@ -623,10 +638,6 @@
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="../../../../tags/pinia/">
-                        <span class="chip bg-color">pinia</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -638,24 +649,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../vitePress/">
+                <a href="../../../07/12/api/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/0.jpg" class="responsive-img" alt="vitePress开发UI文档">
+                        <img src="../../../../medias/featureimages/11.jpg" class="responsive-img" alt="自动生成Api">
                         
-                        <span class="card-title">vitePress开发UI文档</span>
+                        <span class="card-title">自动生成Api</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vitepress基础知识点学习总结。
+                            项目中对于RESTful请求配置生成功能。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-12
                             </span>
                         <span class="publish-author">
                             
@@ -672,8 +683,12 @@
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="../../../../tags/vitepress/">
-                        <span class="chip bg-color">vitepress</span>
+                    <a href="../../../../tags/axios/">
+                        <span class="chip bg-color">axios</span>
+                    </a>
+                    
+                    <a href="../../../../tags/api/">
+                        <span class="chip bg-color">api</span>
                     </a>
                     
                 </div>

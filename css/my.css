@@ -8,3 +8,6 @@ pre code {
     color: #e8eaf6;
     background-color: transparent; 
 }
+#articleContent .img-item{
+    text-align: left;
+}
