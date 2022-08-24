@@ -369,7 +369,6 @@
 <p>2、运行命令 npm run coder 生成代码，代码文件目录在 src&#x2F;api&#x2F;system.js, 目录结构如下：</p>
 <img src="https://gitee.com/gengzhaoji/Blog/raw/master/source/upload/1661133076216.png">
 
-
 <h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p>代码生成器生成的代码需要与后端接口有预先的约定</p>
 <h2 id="请求-URL-的约定"><a href="#请求-URL-的约定" class="headerlink" title="请求 URL 的约定"></a>请求 URL 的约定</h2><p>前后端分离开发最佳实践是采用 RESTful 的接口形式进行通信，在此我们对请求 URL 进行统一的规范约定。</p>
 <table>
@@ -489,70 +488,69 @@ Access<span class="token operator">-</span>Control<span class="token operator">-
 
 <h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><p>当后端提供的接口与约定的规范不一致的时候，可以通过配置进行相应的调整做适配，但建议还是按前端建议的约定规范。</p>
 <h2 id="配置说明coder-config-js"><a href="#配置说明coder-config-js" class="headerlink" title="配置说明coder/config.js"></a>配置说明<code>coder/config.js</code></h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 架构配置文件目录</span>
-    <span class="token literal-property property">schemasDir</span><span class="token operator">:</span> <span class="token string">'./schemas/'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 架构配置文件目录</span>
+  <span class="token literal-property property">schemasDir</span><span class="token operator">:</span> <span class="token string">"./schemas/"</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 模板文件目录</span>
-    <span class="token literal-property property">templatesDir</span><span class="token operator">:</span> <span class="token string">'./templates/'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 模板文件目录</span>
+  <span class="token literal-property property">templatesDir</span><span class="token operator">:</span> <span class="token string">"./templates/"</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// api请求地址前缀</span>
-    <span class="token literal-property property">pathPrefix</span><span class="token operator">:</span> <span class="token string">'API_HOST'</span><span class="token punctuation">,</span>
+  <span class="token comment">// api请求地址前缀</span>
+  <span class="token literal-property property">pathPrefix</span><span class="token operator">:</span> <span class="token string">"API_HOST"</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// api支持的请求方法</span>
-    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">'add'</span><span class="token punctuation">,</span> <span class="token comment">// 新增数据</span>
-        <span class="token string">'edit'</span><span class="token punctuation">,</span> <span class="token comment">// 更新数据</span>
-        <span class="token string">'remove'</span><span class="token punctuation">,</span> <span class="token comment">// 删除数据</span>
-        <span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token comment">// 列表数据，响应数据含有分页信息，如：总数、当前页码、页大小</span>
-        <span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token comment">// 不分页列表数据</span>
-        <span class="token string">'export'</span><span class="token punctuation">,</span> <span class="token comment">// 根据条件导出</span>
-        <span class="token string">'info'</span><span class="token punctuation">,</span> <span class="token comment">// 详情查询</span>
-        <span class="token string">'unique'</span><span class="token punctuation">,</span> <span class="token comment">// 唯一校验</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// api支持的请求方法</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"add"</span><span class="token punctuation">,</span> <span class="token comment">// 新增数据</span>
+    <span class="token string">"edit"</span><span class="token punctuation">,</span> <span class="token comment">// 更新数据</span>
+    <span class="token string">"remove"</span><span class="token punctuation">,</span> <span class="token comment">// 删除数据</span>
+    <span class="token string">"page"</span><span class="token punctuation">,</span> <span class="token comment">// 列表数据，响应数据含有分页信息，如：总数、当前页码、页大小</span>
+    <span class="token string">"list"</span><span class="token punctuation">,</span> <span class="token comment">// 不分页列表数据</span>
+    <span class="token string">"export"</span><span class="token punctuation">,</span> <span class="token comment">// 根据条件导出</span>
+    <span class="token string">"info"</span><span class="token punctuation">,</span> <span class="token comment">// 详情查询</span>
+    <span class="token string">"unique"</span><span class="token punctuation">,</span> <span class="token comment">// 唯一校验</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 数据请求类型对应http请求方法的映射</span>
-    <span class="token literal-property property">methodTypeMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'put'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'delete'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 数据请求类型对应http请求方法的映射</span>
+  <span class="token literal-property property">methodTypeMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">"put"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">"delete"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
+    <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 数据请求类型对应api地址的后缀映射</span>
-    <span class="token literal-property property">methodSuffixMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'/add'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'/edit'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'/remove'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'/page'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'/list'</span><span class="token punctuation">,</span>
-        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'/export'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'/info'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'/unique'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 数据请求类型对应api地址的后缀映射</span>
+  <span class="token literal-property property">methodSuffixMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">"/add"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">"/edit"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">"/remove"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">"/page"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">"/list"</span><span class="token punctuation">,</span>
+    <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">"/export"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">"/info"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">"/unique"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 请求方法对应的中文注释</span>
-    <span class="token literal-property property">methodCommentMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">'新增&lt;%=cname%>'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">'更新&lt;%=cname%>'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">'删除&lt;%=cname%>'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>分页列表'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>不分页列表'</span><span class="token punctuation">,</span>
-        <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">'根据条件导出&lt;%=cname%>'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">'获取&lt;%=cname%>单条信息详情'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">'&lt;%=cname%>字段去重校验'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 请求方法对应的中文注释</span>
+  <span class="token literal-property property">methodCommentMap</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">add</span><span class="token operator">:</span> <span class="token string">"新增&lt;%=cname%>"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">edit</span><span class="token operator">:</span> <span class="token string">"更新&lt;%=cname%>"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">remove</span><span class="token operator">:</span> <span class="token string">"删除&lt;%=cname%>"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">page</span><span class="token operator">:</span> <span class="token string">"获取&lt;%=cname%>分页列表"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">list</span><span class="token operator">:</span> <span class="token string">"获取&lt;%=cname%>不分页列表"</span><span class="token punctuation">,</span>
+    <span class="token keyword">export</span><span class="token operator">:</span> <span class="token string">"根据条件导出&lt;%=cname%>"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">info</span><span class="token operator">:</span> <span class="token string">"获取&lt;%=cname%>单条信息详情"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token string">"&lt;%=cname%>字段去重校验"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 是否开启生成批量删除</span>
-    <span class="token literal-property property">batchEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// 是否开启生成批量删除</span>
+  <span class="token literal-property property">batchEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
 
-    <span class="token comment">// 生成api文件路径</span>
-    <span class="token literal-property property">outApiPath</span><span class="token operator">:</span> <span class="token string">'../src/api/'</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token comment">// 生成api文件路径</span>
+  <span class="token literal-property property">outApiPath</span><span class="token operator">:</span> <span class="token string">"../src/api/"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="模型配置"><a href="#模型配置" class="headerlink" title="模型配置"></a>模型配置</h2><p>一个标准的模型配置文件如下，建议相同的实体操作都在一个文件里配置。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
@@ -578,11 +576,11 @@ Access<span class="token operator">-</span>Control<span class="token operator">-
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="1、实现对一个实体进行增、删、改、查、导出、唯一性校验"><a href="#1、实现对一个实体进行增、删、改、查、导出、唯一性校验" class="headerlink" title="1、实现对一个实体进行增、删、改、查、导出、唯一性校验"></a>1、实现对一个实体进行增、删、改、查、导出、唯一性校验</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/api/user'</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/api/user"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法"><a href="#2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法" class="headerlink" title="2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法"></a>2、只需要增、删、改、查中得某些操作，可以指定生成你需要的方法</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
@@ -594,31 +592,32 @@ Access<span class="token operator">-</span>Control<span class="token operator">-
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="3、自定义方法配置"><a href="#3、自定义方法配置" class="headerlink" title="3、自定义方法配置"></a>3、自定义方法配置</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-       <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'登录接口'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">'auth'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/auth/login'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"登录接口"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"login"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">"auth"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/auth/login"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="4、指定请求接口地址前缀"><a href="#4、指定请求接口地址前缀" class="headerlink" title="4、指定请求接口地址前缀"></a>4、指定请求接口地址前缀</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'登录接口'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'login'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">'auth'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">prefix</span><span class="token operator">:</span> <span class="token string">'OTHER_PATH'</span><span class="token punctuation">,</span> <span class="token comment">// 设置与全局配置不同的前缀，OTHER_PATH 在 src/config/index.js中定义</span>
-        <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/auth/login'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-            <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"系统管理模块"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"登录接口"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"login"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token string">"auth"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">prefix</span><span class="token operator">:</span> <span class="token string">"OTHER_PATH"</span><span class="token punctuation">,</span> <span class="token comment">// 设置与全局配置不同的前缀，OTHER_PATH 在 src/config/index.js中定义</span>
+    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">"/auth/login"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
