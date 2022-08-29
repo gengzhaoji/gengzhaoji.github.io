@@ -2394,6 +2394,221 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token comment">// 对象可以按照某个属性排序</span>
 items<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=></span> a<span class="token punctuation">.</span>value <span class="token operator">-</span> b<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h4><p><code>splice()</code> 方法通过删除或替换现有元素或者原地添加新的元素来修改数组，并以数组形式<strong>返回被修改的内容</strong>。此方法<strong>会改变原数组</strong>。</p>
+<blockquote>
+<p><strong>语法</strong></p>
+<p><code>array.splice(start[, deleteCount[, item1[, item2[, ...]]]])</code></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>start</code></td>
+<td>指定修改的开始位置（从 0 计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从 -1 计数，这意味着 -n 是倒数第 n 个元素并且等价于 array.length-n）；如果负数的绝对值大于数组的长度，则表示开始位置为第 0 位。</td>
+</tr>
+<tr>
+<td><code>deleteCount</code></td>
+<td><strong>可选</strong> 整数，表示要移除的数组元素的个数。如果 deleteCount 大于 start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。如果 deleteCount 被省略了，或者它的值大于等于 array.length - start(也就是说，如果它大于或者等于 start 之后的所有元素的数量)，那么 start 之后数组的所有元素都会被删除。如果 deleteCount 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。</td>
+</tr>
+<tr>
+<td><code>item1, item2, ...</code></td>
+<td><strong>可选</strong> 要添加进数组的元素，从 start 位置开始。如果不指定，则 splice() 将只删除数组元素。</td>
+</tr>
+</tbody></table>
+<p><strong>总结</strong></p>
+<ul>
+<li>返回*由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的<strong>数组</strong>。如果没有删除元素，则返回**空数组***。</li>
+</ul>
+</blockquote>
+<p><strong>例子：</strong></p>
+<ol>
+<li>从索引 2 的位置开始删除 0 个元素，插入“drum” 和 “guitar”</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"mandarin"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"drum"</span><span class="token punctuation">,</span> <span class="token string">"guitar"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// myFish: ["angel", "clown", "drum", "guitar", "mandarin", "sturgeon"]</span>
+<span class="token comment">// removed: [], 没有元素被删除</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>从索引 3 的位置开始删除 1 个元素</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"drum"</span><span class="token punctuation">,</span> <span class="token string">"mandarin"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["angel", "clown", "drum", "sturgeon"]</span>
+<span class="token comment">// 被删除的元素: ["mandarin"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>从索引 2 的位置开始删除 1 个元素，插入“trumpet”</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"drum"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"trumpet"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["angel", "clown", "trumpet", "sturgeon"]</span>
+<span class="token comment">// 被删除的元素: ["drum"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="4">
+<li>从索引 0 的位置开始删除 2 个元素，插入”parrot”、”anemone”和”blue”</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"trumpet"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"parrot"</span><span class="token punctuation">,</span> <span class="token string">"anemone"</span><span class="token punctuation">,</span> <span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["parrot", "anemone", "blue", "trumpet", "sturgeon"]</span>
+<span class="token comment">// 被删除的元素: ["angel", "clown"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="5">
+<li>从索引 2 的位置开始删除 2 个元素</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"parrot"</span><span class="token punctuation">,</span> <span class="token string">"anemone"</span><span class="token punctuation">,</span> <span class="token string">"blue"</span><span class="token punctuation">,</span> <span class="token string">"trumpet"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["parrot", "anemone", "sturgeon"]</span>
+<span class="token comment">// 被删除的元素: ["blue", "trumpet"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="6">
+<li>从索引 -2 的位置开始删除 1 个元素</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"mandarin"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["angel", "clown", "sturgeon"]</span>
+<span class="token comment">// 被删除的元素: ["mandarin"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="7">
+<li>从索引 2 的位置开始删除所有元素</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">var</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"angel"</span><span class="token punctuation">,</span> <span class="token string">"clown"</span><span class="token punctuation">,</span> <span class="token string">"mandarin"</span><span class="token punctuation">,</span> <span class="token string">"sturgeon"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 运算后的 myFish: ["angel", "clown"]</span>
+<span class="token comment">// 被删除的元素: ["mandarin", "sturgeon"]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="toString"><a href="#toString" class="headerlink" title="toString()"></a>toString()</h4><p><code>toString()</code> 方法<strong>返回一个字符串</strong>，表示指定的数组及其元素。</p>
+<blockquote>
+<p><strong>语法</strong></p>
+<p><code>array.toString()</code></p>
+<p><strong>总结</strong></p>
+<ul>
+<li>数组对象，<code>toString</code> 方法在内部调用 <code>join()</code> 方法拼接数组中的元素并返回一个字符串，其中包含用<strong>逗号分隔</strong>的每个数组元素。如果 <code>join</code> 方法不可用，或者它不是一个函数，将使用 <code>Object.prototype.toString</code> 代替，返回 <code>[object Array]</code>。</li>
+</ul>
+</blockquote>
+<p><strong>例子</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 如果 `join` 方法不可用，或者它不是一个函数，将使用 `Object.prototype.toString` 代替，返回 `[object Array]`。</span>
+<span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span>join <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// re-assign `join` with a non-function</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [object Array]</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token function-variable function">join</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token number">1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+
+<span class="token keyword">const</span> array1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"1a"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array1<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: "1,2,a,1a"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h4><p><code>unshift()</code>方法将一个或多个元素添加到数组的<strong>开头</strong>，<strong>并返回该数组的新长度</strong>。</p>
+<blockquote>
+<p><strong>语法</strong></p>
+<p><code>arr.unshift(element0, element1, /* … ,*/ elementN)</code></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>elementN</td>
+<td>要添加到数组开头的元素</td>
+</tr>
+</tbody></table>
+</blockquote>
+<p><strong>例子</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [1, 2, 3, 4, 5, 6]</span>
+
+arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 重置数组</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [3, 2, 1, 4, 5, 6]</span>
+
+<span class="token keyword">let</span> arr2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr2<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调用的结果是3，这是新的数组长度</span>
+<span class="token comment">// arr is [0, 1, 2]</span>
+
+arr2<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 新的数组长度为5</span>
+<span class="token comment">// arr is [-2, -1, 0, 1, 2]</span>
+
+arr2<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 新的数组长度为 6</span>
+<span class="token comment">// arr is [[-4, -3], -2, -1, 0, 1, 2]</span>
+
+arr2<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 新的数组长度为 8</span>
+<span class="token comment">// arr is [ [-7, -6], [-5], [-4, -3], -2, -1, 0, 1, 2 ]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="values"><a href="#values" class="headerlink" title="values()"></a>values()</h4><p><code>values()</code>方法返回一个新的 <code>Array Iterator</code> 对象，该对象包含数组每个<strong>索引的值</strong>。</p>
+<blockquote>
+<p><strong>语法</strong></p>
+<p><code>arr.values()</code></p>
+<p><strong>总结</strong></p>
+<ul>
+<li>数组迭代器中存储的是<strong>原数组的地址</strong>，而不是数组元素值，如果数组中元素改变，那么迭代器的值也会改变。</li>
+<li>数组迭代器是一次性的，或者说临时对象。</li>
+</ul>
+</blockquote>
+<p><strong>例子</strong></p>
+<ol>
+<li>使用 for…of 循环进行迭代</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> iterator <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> letter <span class="token keyword">of</span> iterator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>letter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span class="token comment">//"a" "b" "c" "d" "e"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>使用 .next() 迭代</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> iterator <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object &#123; value: "a", done: false &#125;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span> <span class="token comment">// "b"</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"value"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// "c"</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object &#123; value: "d", done: false &#125;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object &#123; value: "e", done: false &#125;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Object &#123; value: undefined, done: true &#125;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span> <span class="token comment">// undefined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li><strong>警告：</strong> 数组迭代器是一次性的，或者说临时对象</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> iterator <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> letter <span class="token keyword">of</span> iterator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>letter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span class="token comment">//"a" "b" "c" "d" "e"</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> letter <span class="token keyword">of</span> iterator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>letter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span class="token comment">// undefined</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li><strong>值：</strong> 数组迭代器中存储的是原数组的地址，而不是数组元素值。</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> iterator <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// Array Iterator &#123;  &#125;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>        <span class="token comment">// "a"</span>
+arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'n'</span><span class="token punctuation">;</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>        <span class="token comment">// "n"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>

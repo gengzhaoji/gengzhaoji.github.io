@@ -1,13 +1,23 @@
 /* Here is your custom css styles. */
-pre{
-      background: #272822;
-      padding-bottom: 2em !important;
+pre {
+  background: #272822;
+  padding-bottom: 2em !important;
 }
 pre code {
-    padding: 0;
-    color: #e8eaf6;
-    background-color: transparent; 
+  padding: 0;
+  color: #e8eaf6;
+  background-color: transparent;
 }
-#articleContent .img-item{
-    text-align: left;
+#articleContent .img-item {
+  text-align: left;
+}
+
+.toc-widget {
+  margin-top: calc(-60px + 0.5rem);
+  max-height: calc(99vh - 226px);
+  display: flex;
+  flex-direction: column;
+}
+.toc-fixed {
+  margin-top: 0.5rem;
 }
