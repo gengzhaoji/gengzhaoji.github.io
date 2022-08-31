@@ -21,3 +21,16 @@ pre code {
 .toc-fixed {
   margin-top: 0.5rem;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: calc(8px / 2);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
