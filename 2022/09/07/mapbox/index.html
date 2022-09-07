@@ -4,10 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Three知识点, 耿朝继">
-    <meta name="description" content="FBX 文件转换为 GLB 文件方法：1、第一种使用插件 fbx2gltf
-npm i fbx2gltf -S 项目中安装 fbx2gltf 插件。
-cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
+    <meta name="keywords" content="Mapbox, 耿朝继">
+    <meta name="description" content="vue中使用mapbox-gl
+安装pnpm i mapbox-gl -S
+在单页面中使用// mapboxgl地图
+import mapboxgl from &#39;mapbox-gl&#39;;
+import &#39;mapbox-gl/dist/mapb">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +23,7 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
 
     
 
-    <title>Three知识点 | 耿朝继</title>
+    <title>Mapbox | 耿朝继</title>
     <link rel="icon" type="image/png" href="../../../../favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
@@ -179,12 +181,12 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Three知识点</h1>
+                    <h1 class="description center-align post-title">Mapbox</h1>
                 </div>
             </div>
         </div>
@@ -300,12 +302,12 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../tags/3%E7%BB%B4/">
-                                <span class="chip bg-color">3维</span>
+                            <a href="../../../../tags/vue/">
+                                <span class="chip bg-color">vue</span>
                             </a>
                         
-                            <a href="../../../../tags/Three/">
-                                <span class="chip bg-color">Three</span>
+                            <a href="../../../../tags/mapbox/">
+                                <span class="chip bg-color">mapbox</span>
                             </a>
                         
                     </div>
@@ -320,7 +322,7 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-05
+                    2022-09-07
                 </div>
                 
 
@@ -344,21 +346,96 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="FBX-文件转换为-GLB-文件方法："><a href="#FBX-文件转换为-GLB-文件方法：" class="headerlink" title="FBX 文件转换为 GLB 文件方法："></a>FBX 文件转换为 GLB 文件方法：</h2><h3 id="1、第一种使用插件-fbx2gltf"><a href="#1、第一种使用插件-fbx2gltf" class="headerlink" title="1、第一种使用插件 fbx2gltf"></a>1、第一种使用插件 fbx2gltf</h3><ol>
-<li><code>npm i fbx2gltf -S</code> 项目中安装 <code>fbx2gltf</code> 插件。</li>
-<li>cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件，然后根据平台选择平台进入相应目录，window 系统选择 Windows_NT 目录，同时把要转换的 fbx 文件拷贝放在该目录下。</li>
-<li><code>for /r %i in (*.fbx) do FBX2glTF -i %i -o %~ni.glb</code>将 fbx 格式文件批量转换为 glb 格式。</li>
+                <h1 id="vue中使用mapbox-gl"><a href="#vue中使用mapbox-gl" class="headerlink" title="vue中使用mapbox-gl"></a>vue中使用mapbox-gl</h1><ol>
+<li>安装<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">pnpm i mapbox<span class="token operator">-</span>gl <span class="token operator">-</span><span class="token constant">S</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>在单页面中使用<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// mapboxgl地图</span>
+<span class="token keyword">import</span> mapboxgl <span class="token keyword">from</span> <span class="token string">'mapbox-gl'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'mapbox-gl/dist/mapbox-gl.css'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h3 id="2、使用-THREE-自带的编辑器"><a href="#2、使用-THREE-自带的编辑器" class="headerlink" title="2、使用 THREE 自带的编辑器"></a>2、使用 THREE 自带的编辑器</h3><ol>
-<li>使用<code>https://threejs.org/editor/</code>将 fbx 导入。</li>
-<li>然后导出 glb 文件。</li>
-</ol>
-<h2 id="GLB-文件压缩（模型文件大小优化）"><a href="#GLB-文件压缩（模型文件大小优化）" class="headerlink" title="GLB 文件压缩（模型文件大小优化）"></a>GLB 文件压缩（模型文件大小优化）</h2><ol>
-<li><code>npm i gltf-pipeline -g</code> 全局安装压缩插件。</li>
-<li><code>for %i in (*.glb) do gltf-pipeline -i %i -o %~ni.glb -d</code> GLB 文件所在目录下的 glb 文件进行批量压缩。</li>
-<li><code>for /r %i in (*.glb) do gltf-pipeline -i %i -o %~ni.glb -d</code> 批量处理。GLB 文件所在目录下所有的 glb 文件。</li>
-</ol>
+<blockquote>
+<p>注意1: <em><strong>无需在main.js做全局引入；</strong></em><br>注意2: <em><strong>一定要引入样式，否则有些东西显示不出来，比如说放大缩小的导航控制条；</strong></em></p>
+</blockquote>
+<h3 id="mapbox-gl在vue中怎样实现中文显示"><a href="#mapbox-gl在vue中怎样实现中文显示" class="headerlink" title="mapbox-gl在vue中怎样实现中文显示"></a>mapbox-gl在vue中怎样实现中文显示</h3><p>1、 安装@mapbox&#x2F;mapbox-gl-language</p>
+<pre class="line-numbers language-none"><code class="language-none">pnpm i @mapbox&#x2F;mapbox-gl-language -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2、 在单页中引用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; mapboxgl汉化
+import MapboxLanguage from &#39;@mapbox&#x2F;mapbox-gl-language&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>3、 在初始化地图方法中设置语言</p>
+<pre class="line-numbers language-none"><code class="language-none">map.addControl(new MapboxLanguage(&#123; defaultLanguage: &#39;zh-Hans&#39; &#125;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="隐藏mapbox商标信息"><a href="#隐藏mapbox商标信息" class="headerlink" title="隐藏mapbox商标信息"></a>隐藏mapbox商标信息</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="完整代码-amp-amp-效果图"><a href="#完整代码-amp-amp-效果图" class="headerlink" title="完整代码 &amp;&amp; 效果图"></a>完整代码 &amp;&amp; 效果图</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+      <span class="token operator">&lt;</span>div ref<span class="token operator">=</span><span class="token string">"basicMapbox"</span> style<span class="token operator">=</span><span class="token string">"position: relative"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"w100 h100"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 
+<span class="token operator">&lt;</span>script setup<span class="token operator">></span>
+<span class="token comment">// mapboxgl地图</span>
+<span class="token keyword">import</span> mapboxgl <span class="token keyword">from</span> <span class="token string">'mapbox-gl'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'mapbox-gl/dist/mapbox-gl.css'</span><span class="token punctuation">;</span>
+<span class="token comment">// mapboxgl汉化</span>
+<span class="token keyword">import</span> MapboxLanguage <span class="token keyword">from</span> <span class="token string">'@mapbox/mapbox-gl-language'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> map<span class="token punctuation">;</span> <span class="token comment">// 地图</span>
+
+<span class="token comment">// 初始化生命周期</span>
+<span class="token function">onMounted</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">onBeforeUnmount</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    map <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> basicMapbox <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    start <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">center</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">zoom</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">pitch</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">bearing</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    end <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">center</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">118.726533</span><span class="token punctuation">,</span> <span class="token number">32.012005</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">zoom</span><span class="token operator">:</span> <span class="token number">16.5</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">bearing</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token comment">//目标方位角</span>
+        <span class="token literal-property property">pitch</span><span class="token operator">:</span> <span class="token number">75</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    mapboxgl<span class="token punctuation">.</span>accessToken <span class="token operator">=</span> <span class="token string">'pk.eyJ1IjoicGxheS1pc2FhYyIsImEiOiJjazU0cDkzbWowamd2M2dtemd4bW9mbzRhIn0.cxD4Fw3ZPB_taMkyUSFENA'</span><span class="token punctuation">;</span>
+    map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mapboxgl<span class="token punctuation">.</span>Map</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">container</span><span class="token operator">:</span> basicMapbox<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+        <span class="token literal-property property">style</span><span class="token operator">:</span> <span class="token string">'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y'</span><span class="token punctuation">,</span>
+        <span class="token operator">...</span>start<span class="token punctuation">,</span>
+        <span class="token literal-property property">projection</span><span class="token operator">:</span> <span class="token string">'globe'</span><span class="token punctuation">,</span> <span class="token comment">// 为 3D 地球</span>
+        <span class="token literal-property property">antialias</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">//抗锯齿，通过false关闭提升性能</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map<span class="token punctuation">.</span><span class="token function">addControl</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MapboxLanguage</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">defaultLanguage</span><span class="token operator">:</span> <span class="token string">'zh-Hans'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ### 添加导航控制条</span>
+    map<span class="token punctuation">.</span><span class="token function">addControl</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">mapboxgl<span class="token punctuation">.</span>NavigationControl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'top-left'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'style.load'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        map<span class="token punctuation">.</span><span class="token function">setFog</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        map<span class="token punctuation">.</span><span class="token function">flyTo</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            <span class="token operator">...</span>end<span class="token punctuation">,</span>
+            <span class="token literal-property property">duration</span><span class="token operator">:</span> <span class="token number">12000</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">essential</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style<span class="token operator">></span>
+<span class="token punctuation">.</span>mapboxgl<span class="token operator">-</span>ctrl<span class="token operator">-</span>bottom<span class="token operator">-</span>left<span class="token punctuation">,</span>
+<span class="token punctuation">.</span>mapboxgl<span class="token operator">-</span>ctrl<span class="token operator">-</span>bottom<span class="token operator">-</span>right <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">display</span><span class="token operator">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">.</span>mapboxgl<span class="token operator">-</span>ctrl<span class="token operator">-</span>icon <span class="token punctuation">&#123;</span>
+    box<span class="token operator">-</span>sizing<span class="token operator">:</span> border<span class="token operator">-</span>box<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c324ad1469ee46888f777c21d27927e9~tplv-k3u1fbpfcp-watermark.image?" alt="GIF 2022-9-7 16-47-56.gif" width="100%" />
                 
             </div>
             <hr/>
@@ -422,12 +499,12 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../tags/3%E7%BB%B4/">
-                                    <span class="chip bg-color">3维</span>
+                                <a href="../../../../tags/vue/">
+                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
-                                <a href="../../../../tags/Three/">
-                                    <span class="chip bg-color">Three</span>
+                                <a href="../../../../tags/mapbox/">
+                                    <span class="chip bg-color">mapbox</span>
                                 </a>
                             
                         </div>
@@ -601,29 +678,30 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../2022/03/03/vue3/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Vue3知识点">
+                        <img src="../../../../medias/featureimages/1.jpg" class="responsive-img" alt="Mapbox">
                         
-                        <span class="card-title">Vue3知识点</span>
+                        <span class="card-title">Mapbox</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vue3知识点总结
+                            vue3中使用mapbox-gl
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-03
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -632,11 +710,16 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="../../../../tags/vue/">
                         <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="../../../../tags/mapbox/">
+                        <span class="chip bg-color">mapbox</span>
                     </a>
                     
                 </div>
@@ -650,24 +733,24 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../08/12/http/">
+                <a href="../../../08/19/uniApp/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/8.jpg" class="responsive-img" alt="HTTP">
+                        <img src="../../../../medias/featureimages/7.jpg" class="responsive-img" alt="uniApp">
                         
-                        <span class="card-title">HTTP</span>
+                        <span class="card-title">uniApp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            HTTP相关知识学习。
+                            uniApp工程化总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-19
                             </span>
                         <span class="publish-author">
                             
@@ -680,8 +763,12 @@ cmd 管理员运行进入 node_modules\fbx2gltf 文件下的 bin 文件">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/HTTP/">
-                        <span class="chip bg-color">HTTP</span>
+                    <a href="../../../../tags/uniApp/">
+                        <span class="chip bg-color">uniApp</span>
+                    </a>
+                    
+                    <a href="../../../../tags/vue3/">
+                        <span class="chip bg-color">vue3</span>
                     </a>
                     
                 </div>
