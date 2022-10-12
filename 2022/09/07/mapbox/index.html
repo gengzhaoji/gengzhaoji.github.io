@@ -355,14 +355,14 @@ import &#39;mapbox-gl/dist/mapb">
 <blockquote>
 <p>注意1: <em><strong>无需在main.js做全局引入；</strong></em><br>注意2: <em><strong>一定要引入样式，否则有些东西显示不出来，比如说放大缩小的导航控制条；</strong></em></p>
 </blockquote>
-<h3 id="mapbox-gl在vue中怎样实现中文显示"><a href="#mapbox-gl在vue中怎样实现中文显示" class="headerlink" title="mapbox-gl在vue中怎样实现中文显示"></a>mapbox-gl在vue中怎样实现中文显示</h3><p>1、 安装@mapbox&#x2F;mapbox-gl-language</p>
+<h2 id="mapbox-gl在vue中怎样实现中文显示"><a href="#mapbox-gl在vue中怎样实现中文显示" class="headerlink" title="mapbox-gl在vue中怎样实现中文显示"></a>mapbox-gl在vue中怎样实现中文显示</h2><p>1、 安装@mapbox&#x2F;mapbox-gl-language</p>
 <pre class="line-numbers language-none"><code class="language-none">pnpm i @mapbox&#x2F;mapbox-gl-language -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>2、 在单页中引用</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; mapboxgl汉化
 import MapboxLanguage from &#39;@mapbox&#x2F;mapbox-gl-language&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>3、 在初始化地图方法中设置语言</p>
 <pre class="line-numbers language-none"><code class="language-none">map.addControl(new MapboxLanguage(&#123; defaultLanguage: &#39;zh-Hans&#39; &#125;));<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="隐藏mapbox商标信息"><a href="#隐藏mapbox商标信息" class="headerlink" title="隐藏mapbox商标信息"></a>隐藏mapbox商标信息</h3><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.mapboxgl-ctrl-bottom-left,
+<h2 id="隐藏mapbox商标信息"><a href="#隐藏mapbox商标信息" class="headerlink" title="隐藏mapbox商标信息"></a>隐藏mapbox商标信息</h2><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.mapboxgl-ctrl-bottom-left,
 .mapboxgl-ctrl-bottom-right</span> <span class="token punctuation">&#123;</span>
     <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
